@@ -34,7 +34,7 @@ const IndexPage = () => {
                     additionalClasses={['grow', 'justify-center']}
                 />
             </div>
-            <div className="px-4 mx-auto w-7xl max-w-[90%]">
+            <div className="px-4 mx-auto w-[90%]">
                 <div className={type === 'drivers' ? '' : 'hidden'}>
                     {driversQuestions.map((question) => (
                         <div key={question.id} className="border border-light px-4 mt-4">
@@ -48,6 +48,7 @@ const IndexPage = () => {
                     {refugeesQuestions.map((question) => (
                         <div key={question.id} className="border border-light px-4 mt-4">
                             <Header level={3} text={question[`question_${language}`]} />
+                            <Delimiter variant="light" />
                             <Content blocks={question[`answer_${language}`].blocks} />
                         </div>
                     ))}
@@ -59,7 +60,7 @@ const IndexPage = () => {
 
 const query = graphql`
     query indexQuery {
-        driversQuestions: allFaq(filter: {for_who: {eq: "drivers"}}) {
+        driversQuestions: allFaq(filter: {for_who: {eq: "drivers"}}, sort: {fields: order, order: ASC}) {
             nodes {
                 question_pl
                 question_ua
@@ -155,7 +156,7 @@ const query = graphql`
                 for_who
             }
         }
-        refugeesQuestions: allFaq(filter: {for_who: {eq: "refugees"}}) {
+        refugeesQuestions: allFaq(filter: {for_who: {eq: "refugees"}}, sort: {fields: order, order: ASC}) {
             nodes {
                 question_pl
                 question_ua
