@@ -15,8 +15,8 @@ jobs:
 
     - name: Enter data to .env file
       run: |
-        echo GATSBY_FLOTIQ_API_KEY="$FLOTIQ_API_KEY" >> .env.production
         echo GA_TRACKING_ID="$GA_TRACKING_ID" >> .env.production
+        echo GATSBY_FLOTIQ_API_KEY="$FLOTIQ_API_KEY" >> .env.production
       shell: bash
       env:
         GATSBY_FLOTIQ_API_KEY: ${{ secrets.GATSBY_FLOTIQ_API_KEY }}
@@ -32,9 +32,6 @@ jobs:
         npm install -g gatsby-cli
         gatsby clean
         gatsby build
-        rm -rf public
-        mkdir -p public
-        find public/ -maxdepth 1 -mindepth 1 -not -name blog -exec mv '{}' public/ \;
 
     - name: Cloudflare
       run: |
