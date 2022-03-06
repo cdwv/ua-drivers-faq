@@ -10,8 +10,8 @@ import Layout from '../layouts/layout';
 const IndexPage = () => {
     const driversQuestions = useStaticQuery(query).driversQuestions.nodes;
     const refugeesQuestions = useStaticQuery(query).refugeesQuestions.nodes;
-    const [language, setLanguage] = useState('pl');
-    const [type, setType] = useState('drivers');
+    const [language, setLanguage] = useState('ua');
+    const [type, setType] = useState('refugees');
 
     return (
         <Layout language={language} setLanguage={setLanguage}>
